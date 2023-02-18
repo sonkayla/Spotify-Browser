@@ -23,8 +23,7 @@ export class SpotifyService {
     //It's possible to do the assignment using lastValueFrom, but we recommend using toPromise() for now as we haven't
     //yet talked about Observables. https://indepth.dev/posts/1287/rxjs-heads-up-topromise-is-being-deprecated
 
-    let promise = this.http.get(this.expressBaseUrl + endpoint).toPromise();
-    return Promise.resolve();
+    return Promise.resolve(this.http.get(this.expressBaseUrl + endpoint).toPromise());
   }
 
   aboutMe():Promise<ProfileData> {
