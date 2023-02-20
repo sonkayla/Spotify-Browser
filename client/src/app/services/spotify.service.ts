@@ -80,14 +80,25 @@ export class SpotifyService {
     });
   }
 
+  // getAlbumsForArtist(artistId:string):Promise<AlbumData[]> {
+  //   //TODO: use the albums for an artist endpoint to make a request to express.
+  //   let encoded_artist = encodeURIComponent(artistId);
+
+  //   return this.sendRequestToExpress('/artist-albums/' + encoded_artist).then((data) => 
+  //   {
+  //     return data['items'].map((album) => {return new AlbumData(album);});
+  //   });
+  // }
   getAlbumsForArtist(artistId:string):Promise<AlbumData[]> {
     //TODO: use the albums for an artist endpoint to make a request to express.
-    let encoded_artist = encodeURIComponent(artistId);
-
-    return this.sendRequestToExpress('/artist-albums/' + encoded_artist).then((data) => 
-    {
-      return data['items'].map((album) => {return new AlbumData(album);});
+    let encodedArtistId = encodeURIComponent(artistId);
+    return this.sendRequestToExpress('/artist-albums/' + encodedArtistId).then((data) => {
+      console.log(data);
+      let albumArr:AlbumData[];
+      return albumArr = data['items'].map((albumInfo) => {
+      return new AlbumData(albumInfo);
     });
+    })
   }
 
   getAlbum(albumId:string):Promise<AlbumData> {
@@ -121,10 +132,14 @@ export class SpotifyService {
     { 
       let trackFeatures:TrackFeature[]=[];
 
-      trackFeatures.push(new TrackFeature('danceability', data['danceability']), new TrackFeature('energy', data['energy']), 
-      new TrackFeature('speechiness', data['speechiness']), new TrackFeature('acousticness', data['acousticness']), 
-      new TrackFeature('instrumentalness', data['instrumentalness']), new TrackFeature('liveness', data['liveness']),
-      new TrackFeature('valence', data['valence']));
+      trackFeatures.push(new TrackFeature('danceability', data['danceability']));
+      trackFeatures.push(new TrackFeature('energy', data['energy'])); 
+      trackFeatures.push(new TrackFeature('speechiness', data['speechiness']));
+      trackFeatures.push(new TrackFeature('acousticness', data['acousticness'])); 
+      trackFeatures.push(new TrackFeature('instrumentalness', data['instrumentalness']));
+      trackFeatures.push(new TrackFeature('liveness', data['liveness']));
+      trackFeatures.push(new TrackFeature('valence', data['valence']));
+
       return trackFeatures; 
     });
   }
