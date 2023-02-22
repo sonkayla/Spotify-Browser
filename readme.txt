@@ -39,5 +39,5 @@ N/A
 
 6. Is there anything special we need to know in order to run your code?
 
-No.
+We took out the node_modules folder as instructed. We also did not change the background colors and other css aspects since the professor said it was optional.
 
