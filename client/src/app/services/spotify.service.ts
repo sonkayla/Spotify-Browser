@@ -22,7 +22,6 @@ export class SpotifyService {
     //Note: toPromise() is a deprecated function that will be removed in the future.
     //It's possible to do the assignment using lastValueFrom, but we recommend using toPromise() for now as we haven't
     //yet talked about Observables. https://indepth.dev/posts/1287/rxjs-heads-up-topromise-is-being-deprecated
-
     return Promise.resolve(this.http.get(this.expressBaseUrl + endpoint).toPromise());
   }
 
